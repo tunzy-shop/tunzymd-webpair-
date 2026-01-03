@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TUNZYMD Web Pair - Generate Session File</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-robot"></i>
+                    <span class="badge">MD</span>
+                </div>
+                <div class="logo-text">
+                    <h1>TUNZYMD</h1>
+                    <p class="subtitle">Web Pairing System v2.0</p>
+                </div>
+            </div>
+            <div class="status-indicator">
+                <span class="status-dot online"></span>
+                <span class="status-text">System Online</span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Pairing Section -->
+            <section class="pairing-section">
+                <div class="section-header">
+                    <i class="fas fa-qrcode"></i>
+                    <h2>Generate Session File</h2>
+                    <p>Create your <code>creds.json</code> file in seconds</p>
+                </div>
+
+                <div class="pairing-form">
+                    <div class="input-group">
+                        <label for="phoneNumber">
+                            <i class="fas fa-phone-alt"></i> WhatsApp Number
+                        </label>
+                        <div class="input-wrapper">
+                            <div class="country-code">+</div>
+                            <input 
+                                type="tel" 
+                                id="phoneNumber" 
+                                placeholder="2348012345678"
+                                pattern="[0-9]{10,15}"
+                                required
+                                autofocus
+                            >
+                        </div>
+                        <div class="input-hint">
+                            <i class="fas fa-info-circle"></i>
+                            Enter your number with country code, without '+' sign
+                        </div>
+                    </div>
+
+                    <div class="form-footer">
+                        <button id="generateBtn" class="btn-primary">
+                            <span class="btn-icon"><i class="fas fa-bolt"></i></span>
+                            <span class="btn-text">Generate Creds File</span>
+                        </button>
+                        
+                        <div class="note">
+                            <i class="fas fa-shield-alt"></i>
+                            <p>Your session file will be sent to your WhatsApp private messages</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tutorial Section -->
+            <section class="tutorial-section">
+                <div class="section-header">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h2>Watch Tutorial (Required)</h2>
+                    <p>Learn how to use your generated file</p>
+                </div>
+
+                <div class="tutorial-content">
+                    <a href="https://youtu.be/uF7DBNoKWdU?si=fTZ1xRwHXzdh1M2n" 
+                       target="_blank" 
+                       class="tutorial-card">
+                        <div class="video-preview">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                            <div class="video-overlay">
+                                <i class="fab fa-youtube"></i>
+                                <span>Tutorial Video</span>
+                            </div>
+                        </div>
+                        <div class="tutorial-info">
+                            <h3>TUNZYMD1 Setup Guide</h3>
+                            <p>Complete step-by-step tutorial for pairing and setup</p>
+                            <div class="video-meta">
+                                <span class="duration">
+                                    <i class="far fa-clock"></i> Required Viewing
+                                </span>
+                                <span class="action">
+                                    Watch Now <i class="fas fa-external-link-alt"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <div class="warning-alert">
+                        <div class="warning-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="warning-content">
+                            <strong>⚠️ IMPORTANT NOTICE</strong>
+                            <p>You <strong>MUST</strong> watch this tutorial to properly set up your session. The video shows exactly how to use the generated <code>creds.json</code> file.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Results Section (Hidden by default) -->
+            <section id="resultsSection" class="results-section hidden">
+                <div class="section-header">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <h2>Processing Your Request</h2>
+                </div>
+
+                <div class="processing-state">
+                    <div class="spinner-container">
+                        <div class="spinner"></div>
+                        <p class="status-message" id="statusMessage">Creating your session file...</p>
+                    </div>
+                </div>
+
+                <div id="successBox" class="success-state hidden">
+                    <div class="success-card">
+                        <div class="success-header">
+                            <i class="fas fa-check-circle"></i>
+                            <h3>✅ Session File Created Successfully!</h3>
+                        </div>
+                        
+                        <div class="success-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Pairing Code:</span>
+                                <span class="detail-value code">TUNZYMD1</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Status:</span>
+                                <span class="detail-value status-active">Active</span>
+                            </div>
+                        </div>
+
+                        <div class="success-instructions">
+                            <h4><i class="fas fa-comment-dots"></i> Next Steps:</h4>
+                            <ol>
+                                <li>Check your WhatsApp private messages for the file link</li>
+                                <li>Download your <code>creds.json</code> file</li>
+                                <li><strong>Watch the tutorial video</strong> above</li>
+                                <li>Follow the video instructions to complete setup</li>
+                            </ol>
+                        </div>
+
+                        <div class="success-note">
+                            <i class="fas fa-bell"></i>
+                            <p>The download link has been sent to your WhatsApp. Check your private messages.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="errorBox" class="error-state hidden">
+                    <div class="error-card">
+                        <div class="error-header">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <h3>❌ Error Occurred</h3>
+                        </div>
+                        <p class="error-message" id="errorMessage">There was a problem processing your request.</p>
+                        <button class="btn-secondary" onclick="retryProcess()">
+                            <i class="fas fa-redo"></i> Try Again
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h4>TUNZYMD Web Pair</h4>
+                    <p>Version 2.0.1 • Secure Session Generator</p>
+                </div>
+                
+                <div class="footer-links">
+                    <a href="https://github.com/tunzy-shop/tunzymd-webpair" target="_blank" class="footer-link">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a href="https://youtu.be/uF7DBNoKWdU?si=fTZ1xRwHXzdh1M2n" target="_blank" class="footer-link">
+                        <i class="fab fa-youtube"></i> Tutorial
+                    </a>
+                    <span class="footer-separator">•</span>
+                    <span class="footer-status">
+                        <i class="fas fa-circle"></i> System Online
+                    </span>
+                </div>
+            </div>
+            
+            <div class="footer-copyright">
+                <p>© 2026 TUNZYMD Web Pair System. All rights reserved.</p>
+                <p class="disclaimer">This tool securely generates session files for authorized use only.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
